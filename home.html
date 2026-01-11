@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fashion Shop | Trang chủ</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f4f6f8;
+        font-family: Arial, sans-serif;
+      }
+      header {
+        background: #111;
+        color: #fff;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      nav a {
+        color: #fff;
+        margin-left: 20px;
+        text-decoration: none;
+      }
+      .hero {
+        height: 380px;
+        background: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1500&q=80')
+          center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+      }
+      .hero .content {
+        background: rgba(0, 0, 0, 0.55);
+        padding: 30px 40px;
+        border-radius: 15px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 40px 20px;
+      }
+      .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 25px;
+      }
+      .product {
+        background: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+      }
+      .product img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+      }
+      .product-body {
+        padding: 15px;
+      }
+      .price {
+        color: #e91e63;
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+      .product-body button {
+        width: 100%;
+        padding: 10px;
+        background: #111;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Fashion Shop</h1>
+      <nav>
+        <a href="admin.html" style="color: #ffc107">Admin</a>
+        <a href="#">Trang chủ</a>
+        <a href="login.html" id="loginLink">Đăng xuất</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="content">
+        <h2>Thời Trang 2025</h2>
+        <p>Phong cách hiện đại – Giá tốt mỗi ngày</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <h2 style="border-left: 6px solid #e91e63; padding-left: 10px">
+        Sản phẩm mới nhất
+      </h2>
+
+      <div class="products" id="productList">
+        <p style="padding: 20px">Đang tải dữ liệu...</p>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+
+    <script src="./js/firebase-config.js"></script>
+    <script src="./js/home.js"></script>
+  </body>
+</html>

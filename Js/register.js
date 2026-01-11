@@ -1,54 +1,30 @@
-const inpUserName = document.querySelector(".inp-username");
-const inpEmail = document.querySelector(".inp-email");
-const inpPwd = document.querySelector(".inp-pwd");
-const inpCfPwd = document.querySelector(".inp-cf-pw");
+const registerForm = document.getElementById('registerForm')
 
-const registerForm = document.querySelector("#register-form");
+registerForm.addEventListener('submit', async (e) => {
+  e.preventDefault()
 
-function handleRegister(event) {
-  event.preventDefault();
-
-  let username = inpUserName.value;
-  let email = inpEmail.value;
-  let password = inpPwd.value;
-  let confirmPassword = inpCfPwd.value;
-  let role_id = 2; // Admin:1 Guest:2
-
-  if (!username || !email || !password || !confirmPassword) {
-    alert("Vui lòng nhập đầy đủ các trường!");
-    return;
-  }
+  const fullname = document.getElementById('fullname').value
+  const email = document.getElementById('email').value
+  const password = document.getElementById('password').value
+  const confirmPassword = document.getElementById('confirmPassword').value
 
   if (password !== confirmPassword) {
-    alert("Mật khẩu không khớp!");
-    return;
+    alert('Mật khẩu không khớp!')
+    return
   }
 
-  // Register
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then((userRespone) => {
-      var user = userRespone.user;
-      let userData = {
-        username,
-        email,
-        password,
-        role_id,
-        balance: 0,
-      };
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, password)
 
-      db.collection("users")
-        .add(userData)
-        .then((docRef) => {
-          alert("Đăng ký thành công!");
-          window.location.href = "./login.html";
-        });
+    await db.collection('users').doc(cred.user.uid).set({
+      username: fullname,
+      email: email,
+      role_id: 2, // Khách hàng
     })
-    .catch((error) => {
-      console.log(error);
-      alert("Error!");
-    });
-}
 
-registerForm.addEventListener("submit", handleRegister);
+    alert('Đăng ký thành công!')
+    window.location.href = 'login.html'
+  } catch (error) {
+    alert('Lỗi: ' + error.message)
+  }
+})

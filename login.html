@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Đăng nhập — MyApp</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f1724;
+        --card: #0b1220;
+        --glass: rgba(255, 255, 255, 0.04);
+        --radius: 16px;
+        font-family: 'Inter', system-ui;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: radial-gradient(
+            1200px 600px at 10% 10%,
+            rgba(255, 107, 107, 0.07),
+            transparent 6%
+          ),
+          radial-gradient(
+            1000px 500px at 90% 90%,
+            rgba(255, 184, 107, 0.05),
+            transparent 6%
+          ),
+          var(--bg);
+        color: #e6eef8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+      }
+      .container {
+        width: 100%;
+        max-width: 980px;
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 32px;
+        align-items: center;
+      }
+      .hero {
+        padding: 32px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.365),
+          transparent
+        );
+        border-radius: var(--radius);
+        box-shadow: 0 6px 30px rgba(79, 88, 128, 0.534);
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+      }
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.454),
+          rgba(255, 255, 255, 0.463)
+        );
+        border-radius: 20px;
+        padding: 28px;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 10px 30px rgba(21, 31, 71, 0.484);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 8px;
+        color: #cfe3ff;
+      }
+      input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        background: var(--glass);
+        color: inherit;
+        font-size: 14px;
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, #00000000, #00000000);
+        color: #081827;
+        box-shadow: 0 8px 20px rgba(255, 107, 107, 0.14);
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 0;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .error {
+        color: #acacac;
+        font-size: 13px;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <h1>Chào mừng trở lại!</h1>
+<p>Đăng nhập để tiếp tục quản lý Fashion Shop.</p>
+      </section>
+
+      <aside class="card">
+        <div style="font-weight: 600; margin-bottom: 8px">Đăng nhập</div>
+        <form id="loginForm">
+          <div style="margin-bottom: 12px">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+          <div>
+            <label for="password">Mật khẩu</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Mật khẩu của bạn"
+              required
+            />
+            <div id="pwdError" class="error" style="display: none"></div>
+          </div>
+          <div style="margin-top: 18px">
+            <button class="btn-primary" type="submit" style="width: 100%">
+              Đăng nhập
+            </button>
+          </div>
+          <div style="margin-top: 14px; text-align: center; font-size: 13px">
+            Chưa có tài khoản?
+            <a href="register.html" style="color: white">Đăng ký</a>
+          </div>
+        </form>
+      </aside>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+
+    <script src="./js/firebase-config.js"></script>
+    <script src="./js/login.js"></script>
+  </body>
+</html>

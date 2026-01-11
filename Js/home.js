@@ -1,27 +1,42 @@
-const products = [
-  {
-    name: 'Áo thun nam',
-    desc: 'Cotton 100%, form rộng',
-    price: 259000,
-    img: 'images/ao1.jpg'
-  },
-  {
-    name: 'Áo sơ mi nữ',
-    desc: 'Thanh lịch, dễ phối đồ',
-    price: 459000,
-    img: 'images/ao2.jpg'
-  },
-  {
-    name: 'Quần jean nam',
-    desc: 'Jean cao cấp',
-    price: 559000,
-    img: 'images/quan1.jpg'
-  },
-  {
-    name: 'Váy thời trang',
-    desc: 'Trẻ trung, nữ tính',
-    price: 659000,
-    img: 'images/vay1.jpg'
+const list = document.getElementById('productList')
+
+// Lấy sản phẩm từ Firebase
+db.collection('products').onSnapshot((snapshot) => {
+  list.innerHTML = ''
+  if (snapshot.empty) {
+    list.innerHTML = '<p>Chưa có sản phẩm.</p>'
+    return
   }
-];
-  
+
+  snapshot.forEach((doc) => {
+    const p = doc.data()
+    const div = document.createElement('div')
+    div.className = 'product'
+    div.innerHTML = `
+          <img src="${p.img}" alt="${
+      p.name
+    }" onerror="this.src='https://via.placeholder.com/300'">
+          <div class="product-body">
+            <h3>${p.name}</h3>
+            <p>${p.desc || ''}</p>
+            <div class="price">${Number(p.price).toLocaleString()} đ</div>
+            <button onclick="alert('Đã thêm vào giỏ!')">Thêm vào giỏ</button>
+          </div>`
+    list.appendChild(div)
+  })
+})
+
+const loginLink = document.getElementById('loginLink')
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    loginLink.innerText = 'Đăng xuất'
+    loginLink.href = '#'
+    loginLink.onclick = () => {
+      auth.signOut()
+      window.location.reload()
+    }
+  } else {
+    loginLink.innerText = 'Đăng nhập'
+    loginLink.href = 'login.html'
+  }
+})

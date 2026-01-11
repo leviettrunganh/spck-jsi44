@@ -1,28 +1,17 @@
-const inpEmail = document.querySelector(".inp-email");
-const inpPwd = document.querySelector(".inp-pwd");
-const loginForm = document.querySelector("#login-form");
+const loginForm = document.getElementById('loginForm')
 
-function handleLogin(event) {
-  event.preventDefault()
-  let email = inpEmail.value;
-  let password = inpPwd.value;
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault()
 
-  if (!email || !password) {
-    alert("Vui lòng nhập email và password!");
-    return;
+  const email = document.getElementById('email').value
+  const password = document.getElementById('password').value
+
+  try {
+    await auth.signInWithEmailAndPassword(email, password)
+    alert('Đăng nhập thành công!')
+    window.location.href = 'home.html'
+  } catch (error) {
+    console.error(error)
+    alert('Lỗi: ' + error.message)
   }
-
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((userDetail) => {
-        localStorage.setItem('user_session', JSON.stringify(userDetail))
-        alert('Đăng nhập thành công!')
-        window.location.href = "./index.html";
-    }).catch((error)=> {
-        console.log(error)
-        alert('Đăng nhập thất bại, vui lòng đăng nhập lại!')
-    });
-}
-
-loginForm.addEventListener("submit", handleLogin)
+})
