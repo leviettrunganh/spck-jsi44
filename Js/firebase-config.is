@@ -1,0 +1,22 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyDnpeUJTxG5cTJAhOaP1ZTYormqh_qOSO0",
+  authDomain: "fashion-management-8f1fb.firebaseapp.com",
+  projectId: "fashion-management-8f1fb",
+  storageBucket: "fashion-management-8f1fb.firebasestorage.app",
+  messagingSenderId: "83724495642",
+  appId: "1:83724495642:web:dc58d4f8645b10cace9aa3"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = firebase.auth();
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore();
+
+// Initialize Cloud Storage and get a reference to the service
+const storage = firebase.storage();
+ 
+ <script src="./js/firebase-config.js"></script>
